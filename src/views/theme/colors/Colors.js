@@ -15,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { createCity, getAllCities } from "../../../redux/actions/cityactions";
 const City = () => {
+  const [flage, setFlage] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [city_name, setcity_name] = useState("");
   const [state_name, setState_name] = useState("");
@@ -29,7 +30,7 @@ const City = () => {
       dispatch(getAllCities());
     }
     getCities();
-  }, []);
+  }, [flage]);
   const handleSubmit = async () => {
     let params = {
       city_name,
@@ -40,6 +41,7 @@ const City = () => {
     const res = await dispatch(createCity(params));
     if (res.is_success == true) {
       setOpenModal(false);
+      setFlage(!flage);
     }
     setMessage(res.message);
     setToast(!toast);
@@ -67,8 +69,8 @@ const City = () => {
               <tr>
                 <td className="text-muted">{city.city_name}</td>
                 <td className="font-weight-bold">{city.state_name}</td>
-                <td>{city.country}</td>
-                <td className="text-left">{city.city_charges}</td>
+                <td className="">{city.country}</td>
+                <td className="">{city.city_charges}</td>
               </tr>
             ))}
         </tbody>

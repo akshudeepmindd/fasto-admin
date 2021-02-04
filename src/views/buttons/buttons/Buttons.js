@@ -2,8 +2,18 @@ import React, { useEffect, useState, createRef } from "react";
 import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
+import { useDispatch, useSelector } from "react-redux";
+import { rideList } from "../../../redux/actions/rideAction";
 
 const Ride = () => {
+  const dispatch = useDispatch();
+  const { ridelist } = useSelector((state) => state.rides);
+  useEffect(() => {
+    async function getRides() {
+      dispatch(rideList());
+    }
+    getRides();
+  }, []);
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -22,72 +32,35 @@ const Ride = () => {
             <th>Received By </th>
             <th>AddPaid Amount </th>
             <th> Payment Method</th>
-            <th>Feedback  </th>
+            <th>Feedback </th>
             <th>Vehicle</th>
             <th>Invoice</th>
 
             <th>Status</th>
 
             <th>OTP </th>
-
-        
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          
-          </tr>
-            <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          
-          </tr>
+          {ridelist &&
+            ridelist.map((item) => (
+              <tr key={item._id}>
+                <td className="">{item._id}</td>
+                <td className="">{item.createdAt}</td>
+                <td className="">{item.pickupName}</td>
+                <td className="">{item.pickUpLocation}</td>
+                <td className="">{item.dropLocation}</td>
+                <td className="">{item.pickupName}</td>
+                <td className="">{item.receivrName}</td>
+                <td className="">{item._id}</td>
+                <td className="">{item.paymentType}</td>
+                <td className="">{item.rating}</td>
+                <td className="">{item.vehicalSelected}</td>
+                <td className="">{item._id}</td>
+                <td className="">{item.status}</td>
+                <td className="">{item.otp}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>

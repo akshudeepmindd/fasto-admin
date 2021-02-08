@@ -3,6 +3,9 @@ import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
 import Modal from "../../../components/common/Modal";
+
+import { useDispatch, useSelector } from "react-redux";
+import { usersList } from "../../../redux/actions/userAction";
 import {
   CRow,
   CCol,
@@ -17,7 +20,16 @@ import {
 } from "@coreui/react";
 const Passenger = () => {
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
+  const { userslist } = useSelector((state) => state.users);
 
+  useEffect(() => {
+    async function getUsers() {
+      dispatch(usersList());
+    }
+    getUsers();
+  }, []);
+  console.log(userslist);
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -44,45 +56,22 @@ const Passenger = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
+          {userslist &&
+            userslist.map((item) => (
+              <tr key={item._id}>
+                <td className="">{item.userName}</td>
+                <td className="">{item.firstName}</td>
+                <td className="">{item.lastName}</td>
+                <td className="">{item.dp}</td>
+                <td className="">{item.Mobile}</td>
+                <td className="">{item.email}</td>
+                <td className="">{item.state}</td>
+                <td className="">{item.address}</td>
+                <td className="">{item.pincode}</td>
+                <td className="">{item.walletMoney}</td>
+                <td className="">{item.memberType}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <Modal open={openModal} close={() => setOpenModal(!openModal)}>
@@ -133,7 +122,7 @@ const Passenger = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> Profile Pic	 </CLabel>
+                    <CLabel htmlFor="state_name"> Profile Pic </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -230,18 +219,18 @@ const Passenger = () => {
                   </div>
                 </div>
               </CFormGroup>
-               <div>
-                    <CLabel htmlFor="state_name"> Member Type </CLabel>
-                    <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
-                    />
-                    <CFormText className="help-block">
-                      Please enter your State Name
-                    </CFormText>
-                  </div>
+              <div>
+                <CLabel htmlFor="state_name"> Member Type </CLabel>
+                <CInput
+                  type="text"
+                  id="state_name"
+                  name="state_name"
+                  placeholder="Enter State Name.."
+                />
+                <CFormText className="help-block">
+                  Please enter your State Name
+                </CFormText>
+              </div>
               <div style={{ textAlign: "center" }}>
                 <CButton color="primary" onClick>
                   Create City

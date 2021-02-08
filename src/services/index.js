@@ -6,18 +6,17 @@ export const client = axios.create({
 
 client.interceptors.response.use(
   (response) => response,
-  (error) => {
-    const { response } = error;
-    console.log(error, "<<< error in interceptors");
-    if (response.responseCode === 401) {
-      return response;
-    } else if (response.responseCode === 400) {
-      return response;
-    } else if (response.responseCode === 422) {
-      return response;
-    } else {
-      return response;
-    }
-    // return Promise.reject(error.response);
-  }
+  (error) => console.log(error)
+  // const { response } = error;
+  // console.log(error, "<<< error in interceptors");
+  // if (response.responseCode === 401) {
+  //   return response;
+  // } else if (response.responseCode === 400) {
+  //   return response;
+  // } else if (response.responseCode === 422) {
+  //   return response;
+  // } else {
+  //   return response;
+  // }
+  // return Promise.reject(error.response);
 );

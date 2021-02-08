@@ -17,10 +17,9 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
-import {
-  createVehicle,
-  getAllVehicles,
-} from "../../../redux/actions/vehicleactions";
+
+import { useDispatch, useSelector } from "react-redux";
+import { vehicalList, addVehical } from "../../../redux/actions/vehicalAction";
 
 const Vehicle = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -32,26 +31,43 @@ const Vehicle = () => {
 
   const [message, setMessage] = useState("");
   const [toast, setToast] = useState(false);
+
   const dispatch = useDispatch();
-  // const { AllVehicles } = useSelector((state) => state.vehicle);
+  const { vehicalslist } = useSelector((state) => state.vehicals);
+  useEffect(() => {
+    async function getVehicals() {
+      dispatch(vehicalList());
+    }
+    getVehicals();
+  }, []);
 
   const handleSubmit = async () => {
-    let params = {
-      vehicle_Name,
-      capacity,
-      size,
-      about_vehicle,
-      km,
-    };
-    const res = await dispatch(createVehicle(params));
+    let formData = new FormData();
+    // formData.append("vehical_image", {
+    //   uri: path,
+    //   name: `photo.${fileExtension}`,
+    //   type: `image/${fileExtension}`,
+    // });
+    formData.append("vehicle_Name", vehicle_Name);
+    formData.append("capacity", capacity);
+    formData.append("size", size);
+    formData.append("about_vehicle", about_vehicle);
+    formData.append("km", km);
+    // let params = {
+    //   vehicle_Name,
+    //   capacity,
+    //   size,
+    //   about_vehicle,
+    //   km,
+    // };
+    const res = await dispatch(addVehical(formData));
     if (res.is_success == true) {
       setOpenModal(false);
     }
     setMessage(res.message);
     setToast(!toast);
-
-    console.log(params, "params");
   };
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -67,42 +83,20 @@ const Vehicle = () => {
             <th>Capacity </th>
             <th>Size </th>
             <th>About Vehicle </th>
-            <th>Km</th>
+            <th>KM</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="text-muted">Tata Ace </td>
-            <td className="font-weight-bold">500kg </td>
-            <td> 4 x 4 x 3</td>
-
-            <td className="text-center">xyz</td>
-            <td className="text-center">10</td>
-          </tr>
-          <tr>
-            <td className="text-muted">Tata Ace </td>
-            <td className="font-weight-bold">500kg </td>
-            <td> 4 x 4 x 3</td>
-
-            <td className="text-center">xyz</td>
-            <td className="text-center">10</td>
-          </tr>{" "}
-          <tr>
-            <td className="text-muted">Tata Ace </td>
-            <td className="font-weight-bold">500kg </td>
-            <td> 4 x 4 x 3</td>
-
-            <td className="text-center">xyz</td>
-            <td className="text-center">10</td>
-          </tr>{" "}
-          <tr>
-            <td className="text-muted">Tata Ace </td>
-            <td className="font-weight-bold">500kg </td>
-            <td> 4 x 4 x 3</td>
-
-            <td className="text-center">xyz</td>
-            <td className="text-center">10</td>
-          </tr>
+          {vehicalslist &&
+            vehicalslist.map((item) => (
+              <tr key={item._id}>
+                <td className="text-muted">{item.vehical_name}</td>
+                <td className="font-weight-bold">{item.vehical_capacity}</td>
+                <td> {item.vehical_size}</td>
+                <td className="text-center">{item.about_vehical}</td>
+                <td className="text-center">{item.vehical_KM}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <Modal open={openModal} close={() => setOpenModal(!openModal)}>

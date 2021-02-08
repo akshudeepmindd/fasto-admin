@@ -15,8 +15,21 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { driversList } from "../../../redux/actions/driverAction";
+
 const Driver = () => {
   const [openModal, setOpenModal] = useState(false);
+
+  const dispatch = useDispatch();
+  const { driverslist } = useSelector((state) => state.drivers);
+
+  useEffect(() => {
+    async function getDrivers() {
+      dispatch(driversList());
+    }
+    getDrivers();
+  }, []);
 
   return (
     <>
@@ -41,80 +54,38 @@ const Driver = () => {
             <th>Wallet </th>
             <th>Member Type</th>
             <th>City</th>
-
             <th>Current Location </th>
-
             <th>Aadhar </th>
-
             <th>rc</th>
-
             <th> insurance </th>
-
             <th>Driver Category </th>
             <th>Total km</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
+          {driverslist &&
+            driverslist.map((item) => (
+              <tr key={item._id}>
+                <td className="">{item.userName}</td>
+                <td className="">{item.firstName}</td>
+                <td className="">{item.lastName}</td>
+                <td className="">{item.dp}</td>
+                <td className="">{item.Mobile}</td>
+                <td className="">{item.email}</td>
+                <td className="">{item.state}</td>
+                <td className="">{item.address}</td>
+                <td className="">{item.pincode}</td>
+                <td className="">{item.walletMoney}</td>
+                <td className="">{item.memberType}</td>
+                <td className="">{item.city}</td>
+                <td className="">{item.currentLocation}</td>
+                <td className="">{item.driverAadhaar}</td>
+                <td className="">{item.driverRc}</td>
+                <td className="">{item.driverInsurance}</td>
+                <td className="">{item.driverCategory}</td>
+                <td className="">{item.totalKM}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
       <Modal open={openModal} close={() => setOpenModal(!openModal)}>
@@ -225,7 +196,7 @@ const Driver = () => {
                   placeholder="Enter State Name.."
                 />
               </div>
-           
+
               <CFormGroup>
                 <div className="d-flex justify-content-between">
                   <div>
@@ -281,7 +252,7 @@ const Driver = () => {
                 </div>
               </CFormGroup>
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
                     <CLabel htmlFor="state_name">Current Location </CLabel>
                     <CInput
@@ -309,7 +280,7 @@ const Driver = () => {
                 </div>
               </CFormGroup>
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
                     <CLabel htmlFor="state_name">rc </CLabel>
                     <CInput
@@ -323,7 +294,7 @@ const Driver = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> insurance  </CLabel>
+                    <CLabel htmlFor="state_name"> insurance </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -337,9 +308,9 @@ const Driver = () => {
                 </div>
               </CFormGroup>
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
-                    <CLabel htmlFor="state_name">Driver Category  </CLabel>
+                    <CLabel htmlFor="state_name">Driver Category </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -351,7 +322,7 @@ const Driver = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> Total km  </CLabel>
+                    <CLabel htmlFor="state_name"> Total km </CLabel>
                     <CInput
                       type="text"
                       id="state_name"

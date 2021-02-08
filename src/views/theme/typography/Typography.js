@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
 import Modal from "../../../components/common/Modal";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   CRow,
   CCol,
@@ -15,6 +17,11 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
+import {
+  createVehicle,
+  getAllVehicles,
+} from "../../../redux/actions/vehicleactions";
+
 const Vehicle = () => {
   const [openModal, setOpenModal] = useState(false);
   const [vehicle_Name, setvehicle_Name] = useState("");
@@ -25,6 +32,26 @@ const Vehicle = () => {
 
   const [message, setMessage] = useState("");
   const [toast, setToast] = useState(false);
+  const dispatch = useDispatch();
+  // const { AllVehicles } = useSelector((state) => state.vehicle);
+
+  const handleSubmit = async () => {
+    let params = {
+      vehicle_Name,
+      capacity,
+      size,
+      about_vehicle,
+      km,
+    };
+    const res = await dispatch(createVehicle(params));
+    if (res.is_success == true) {
+      setOpenModal(false);
+    }
+    setMessage(res.message);
+    setToast(!toast);
+
+    console.log(params, "params");
+  };
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -90,6 +117,7 @@ const Vehicle = () => {
                   id="city_name"
                   name="city_name"
                   placeholder="Enter CityName.."
+                  onChange={(e) => setvehicle_Name(e.target.value)}
                 />
                 <CFormText className="help-block">
                   Please enter your City
@@ -102,6 +130,7 @@ const Vehicle = () => {
                   id="state_name"
                   name="state_name"
                   placeholder="Enter State Name.."
+                  onChange={(e) => setcapacity(e.target.value)}
                 />
                 <CFormText className="help-block">
                   Please enter your State Name
@@ -114,6 +143,7 @@ const Vehicle = () => {
                   id="country"
                   name="country"
                   placeholder="Enter Country.."
+                  onChange={(e) => setsize(e.target.value)}
                 />
                 <CFormText className="help-block">
                   Please enter your Country
@@ -126,6 +156,7 @@ const Vehicle = () => {
                   id="city_charges"
                   name="city_charges"
                   placeholder="Enter City Charges.."
+                  onChange={(e) => setabout_vehicle(e.target.value)}
                 />
                 <CFormText className="help-block">
                   Please enter your City Charges
@@ -138,13 +169,14 @@ const Vehicle = () => {
                   id="city_charges"
                   name="city_charges"
                   placeholder="Enter City Charges.."
+                  onChange={(e) => setkm(e.target.value)}
                 />
                 <CFormText className="help-block">
                   Please enter your City Charges
                 </CFormText>
               </CFormGroup>
               <div style={{ textAlign: "center" }}>
-                <CButton color="primary" onClick>
+                <CButton color="primary" onClick={handleSubmit}>
                   Create City
                 </CButton>
               </div>

@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
 import Modal from "../../../components/common/Modal";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   CRow,
   CCol,
@@ -15,6 +17,31 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
+import {
+  createSetting,
+  getAllSettings,
+} from "../../../redux/actions/settingactions";
+const dispatch = useDispatch();
+const handleSubmit = async () => {
+  let params = {
+    company_name,
+    gst_no,
+    registered_name,
+    city,
+    state,
+    mobile,
+    company_logo,
+    panic_no
+  };
+  const res = await dispatch(createSetting(params));
+  if (res.is_success == true) {
+    setOpenModal(false);
+  }
+  setMessage(res.message);
+  setToast(!toast);
+
+  console.log(params, "params");
+};
 const Settings = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
@@ -78,9 +105,8 @@ const Settings = () => {
           <h3>Drivers</h3>
           <CRow>
             <CCol md="12">
-            
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
                     <CLabel htmlFor="state_name">Company Name </CLabel>
                     <CInput
@@ -108,7 +134,7 @@ const Settings = () => {
                 </div>
               </CFormGroup>
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
                     <CLabel htmlFor="state_name">Registered Name </CLabel>
                     <CInput
@@ -122,7 +148,7 @@ const Settings = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> City  </CLabel>
+                    <CLabel htmlFor="state_name"> City </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -136,9 +162,9 @@ const Settings = () => {
                 </div>
               </CFormGroup>
               <CFormGroup>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>
-                    <CLabel htmlFor="state_name">State  </CLabel>
+                    <CLabel htmlFor="state_name">State </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -150,7 +176,7 @@ const Settings = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> Mobile  </CLabel>
+                    <CLabel htmlFor="state_name"> Mobile </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -163,10 +189,10 @@ const Settings = () => {
                   </div>
                 </div>
               </CFormGroup>
-                <CFormGroup>
-              <div className="d-flex justify-content-between">
+              <CFormGroup>
+                <div className="d-flex justify-content-between">
                   <div>
-                    <CLabel htmlFor="state_name">Company Logo  </CLabel>
+                    <CLabel htmlFor="state_name">Company Logo </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -178,7 +204,7 @@ const Settings = () => {
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> Panic No  </CLabel>
+                    <CLabel htmlFor="state_name"> Panic No </CLabel>
                     <CInput
                       type="text"
                       id="state_name"
@@ -200,7 +226,6 @@ const Settings = () => {
           </CRow>
         </>
       </Modal>
- 
     </>
   );
 };

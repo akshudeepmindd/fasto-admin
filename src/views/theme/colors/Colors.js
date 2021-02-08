@@ -37,7 +37,7 @@ const City = () => {
       country,
       city_charges,
     };
-    const res = await dispatch(createCity(params));
+    const res = await aa(createCity(params));
     if (res.is_success == true) {
       setOpenModal(false);
     }
@@ -135,7 +135,7 @@ const City = () => {
                   Please enter your City Charges
                 </CFormText>
               </CFormGroup>
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "center" }}>''
                 <CButton color="primary" onClick={handleSubmit}>
                   Create City
                 </CButton>

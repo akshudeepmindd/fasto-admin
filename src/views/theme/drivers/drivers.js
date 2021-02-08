@@ -1,8 +1,8 @@
-import React, { useEffect, useState, createRef } from "react";
-import classNames from "classnames";
-import { rgbToHex } from "@coreui/utils";
-import DocsLink from "../../../reusable/DocsLink";
-import Modal from "../../../components/common/Modal";
+import React, { useEffect, useState, createRef } from 'react'
+import classNames from 'classnames'
+import { rgbToHex } from '@coreui/utils'
+import DocsLink from '../../../reusable/DocsLink'
+import Modal from '../../../components/common/Modal'
 import {
   CRow,
   CCol,
@@ -14,32 +14,51 @@ import {
   CToaster,
   CToastBody,
   CToast,
-} from "@coreui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { driversList } from "../../../redux/actions/driverAction";
+} from '@coreui/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { driversList } from '../../../redux/actions/driverAction'
 
 const Driver = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
-  const dispatch = useDispatch();
-  const { driverslist } = useSelector((state) => state.drivers);
-
+  const dispatch = useDispatch()
+  const { driverslist } = useSelector((state) => state.drivers)
+  const [userName, setUserName] = useState('')
+  const [firstName, setfirstName] = useState('')
+  const [lastName, setlastName] = useState('')
+  const [dp, setDp] = useState('')
+  const [Mobile, setMobile] = useState('')
+  const [email, setemail] = useState('')
+  const [state, setState] = useState('')
+  const [address, setaddress] = useState('')
+  const [pincode, setpincode] = useState('')
+  const [walletMoney, setwalletMoney] = useState('')
+  const [memberType, setmemberType] = useState('')
+  const [city, setcity] = useState('')
+  const [currentLocation, setcurrentLocation] = useState('')
+  const [driverAadhaar, setdriverAadhaar] = useState('')
+  const [driverRc, setdriverRc] = useState('')
+  const [driverInsurance, setdriverInsurance] = useState('')
+  const [driverCategory, setdriverCategory] = useState('')
+  const [totalKM, settotalKM] = useState('')
   useEffect(() => {
     async function getDrivers() {
-      dispatch(driversList());
+      dispatch(driversList())
     }
-    getDrivers();
-  }, []);
+    getDrivers()
+  }, [])
+
+  const onHandleSubmit = () => {}
 
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className='d-flex justify-content-between'>
         <h3>Drivers</h3>
         <div onClick={() => setOpenModal(!openModal)}>
-          <i class="fas fa-plus-square"></i>
+          <i class='fas fa-plus-square'></i>
         </div>
       </div>
-      <table className="table w-100">
+      <table className='table w-100'>
         <thead>
           <tr>
             <th>User Name </th>
@@ -53,37 +72,23 @@ const Driver = () => {
             <th>Pincode</th>
             <th>Wallet </th>
             <th>Member Type</th>
-            <th>City</th>
-            <th>Current Location </th>
-            <th>Aadhar </th>
-            <th>rc</th>
-            <th> insurance </th>
-            <th>Driver Category </th>
-            <th>Total km</th>
           </tr>
         </thead>
         <tbody>
           {driverslist &&
             driverslist.map((item) => (
               <tr key={item._id}>
-                <td className="">{item.userName}</td>
-                <td className="">{item.firstName}</td>
-                <td className="">{item.lastName}</td>
-                <td className="">{item.dp}</td>
-                <td className="">{item.Mobile}</td>
-                <td className="">{item.email}</td>
-                <td className="">{item.state}</td>
-                <td className="">{item.address}</td>
-                <td className="">{item.pincode}</td>
-                <td className="">{item.walletMoney}</td>
-                <td className="">{item.memberType}</td>
-                <td className="">{item.city}</td>
-                <td className="">{item.currentLocation}</td>
-                <td className="">{item.driverAadhaar}</td>
-                <td className="">{item.driverRc}</td>
-                <td className="">{item.driverInsurance}</td>
-                <td className="">{item.driverCategory}</td>
-                <td className="">{item.totalKM}</td>
+                <td className=''>{item.userName}</td>
+                <td className=''>{item.firstName}</td>
+                <td className=''>{item.lastName}</td>
+                <td className=''>{item.dp}</td>
+                <td className=''>{item.Mobile}</td>
+                <td className=''>{item.email}</td>
+                <td className=''>{item.state}</td>
+                <td className=''>{item.address}</td>
+                <td className=''>{item.pincode}</td>
+                <td className=''>{item.walletMoney}</td>
+                <td className=''>{item.memberType}</td>
               </tr>
             ))}
         </tbody>
@@ -92,251 +97,270 @@ const Driver = () => {
         <>
           <h3>Drivers</h3>
           <CRow>
-            <CCol md="12">
+            <CCol md='12'>
               <CFormGroup>
-                <CLabel htmlFor="city_name">User Name</CLabel>
+                <CLabel htmlFor='city_name'>User Name</CLabel>
                 <CInput
-                  type="text"
-                  id="city_name"
-                  name="city_name"
-                  placeholder="Enter CityName.."
+                  type='text'
+                  id='city_name'
+                  name='city_name'
+                  placeholder='Enter CityName..'
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                 />
-                <CFormText className="help-block">
+                <CFormText className='help-block'>
                   Please enter your City
                 </CFormText>
               </CFormGroup>
               <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">First Name</CLabel>
+                    <CLabel htmlFor='state_name'>First Name</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setfirstName(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name">Last Name</CLabel>
+                    <CLabel htmlFor='state_name'>Last Name</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setlastName(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
               </CFormGroup>
               <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">Profile Pic</CLabel>
+                    <CLabel htmlFor='state_name'>Profile Pic</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setDp(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name">Mobile</CLabel>
+                    <CLabel htmlFor='state_name'>Mobile</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setMobile(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">Email</CLabel>
+                    <CLabel htmlFor='state_name'>Email</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setemail(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name">State</CLabel>
+                    <CLabel htmlFor='state_name'>State</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setState(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
               </CFormGroup>
               <div>
-                <CLabel htmlFor="state_name">Address</CLabel>
+                <CLabel htmlFor='state_name'>Address</CLabel>
                 <CInput
-                  type="text"
-                  id="state_name"
-                  name="state_name"
-                  placeholder="Enter State Name.."
+                  type='text'
+                  id='state_name'
+                  name='state_name'
+                  placeholder='Enter State Name..'
+                  onChange={(e) => setaddress(e.target.value)}
                 />
               </div>
 
               <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">Pin Code</CLabel>
+                    <CLabel htmlFor='state_name'>Pin Code</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setpincode(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name">Wallet</CLabel>
+                    <CLabel htmlFor='state_name'>Wallet</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setwalletMoney(e.target.value)}
                     />
-                    <CFormText className="help-block">
-                      Please enter your State Name
-                    </CFormText>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <div>
-                    <CLabel htmlFor="state_name">Member Type</CLabel>
-                    <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
-                    />
-                    <CFormText className="help-block">
-                      Please enter your State Name
-                    </CFormText>
-                  </div>
-                  <div>
-                    <CLabel htmlFor="state_name">City</CLabel>
-                    <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
-                    />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
-              </CFormGroup>
-              <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">Current Location </CLabel>
+                    <CLabel htmlFor='state_name'>Member Type</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setmemberType(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name">Aadhar </CLabel>
+                    <CLabel htmlFor='state_name'>City</CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setcity(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
               </CFormGroup>
               <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">rc </CLabel>
+                    <CLabel htmlFor='state_name'>Current Location </CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setcurrentLocation(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> insurance </CLabel>
+                    <CLabel htmlFor='state_name'>Aadhar </CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setdriverAadhaar(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
               </CFormGroup>
               <CFormGroup>
-                <div className="d-flex justify-content-between">
+                <div className='d-flex justify-content-between'>
                   <div>
-                    <CLabel htmlFor="state_name">Driver Category </CLabel>
+                    <CLabel htmlFor='state_name'>rc </CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setdriverRc(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                   <div>
-                    <CLabel htmlFor="state_name"> Total km </CLabel>
+                    <CLabel htmlFor='state_name'> insurance </CLabel>
                     <CInput
-                      type="text"
-                      id="state_name"
-                      name="state_name"
-                      placeholder="Enter State Name.."
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter State Name..'
+                      onChange={(e) => setdriverInsurance(e.target.value)}
                     />
-                    <CFormText className="help-block">
+                    <CFormText className='help-block'>
                       Please enter your State Name
                     </CFormText>
                   </div>
                 </div>
               </CFormGroup>
-              <div style={{ textAlign: "center" }}>
-                <CButton color="primary" onClick>
+              <CFormGroup>
+                <div className='d-flex justify-content-between'>
+                  <div>
+                    <CLabel htmlFor='state_name'>Driver Category </CLabel>
+                    <CInput
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter Driver Category..'
+                      onChange={(e) => setdriverCategory(e.target.value)}
+                    />
+                    <CFormText className='help-block'>
+                      Please enter your Driver Category
+                    </CFormText>
+                  </div>
+                  <div>
+                    <CLabel htmlFor='state_name'> Total km </CLabel>
+                    <CInput
+                      type='text'
+                      id='state_name'
+                      name='state_name'
+                      placeholder='Enter Total km.'
+                      onChange={(e) => settotalKM(e.target.value)}
+                    />
+                    <CFormText className='help-block'>
+                      Please enter your Total km
+                    </CFormText>
+                  </div>
+                </div>
+              </CFormGroup>
+              <div style={{ textAlign: 'center' }}>
+                <CButton color='primary' onClick>
                   Create City
                 </CButton>
               </div>
@@ -345,7 +369,7 @@ const Driver = () => {
         </>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Driver;
+export default Driver

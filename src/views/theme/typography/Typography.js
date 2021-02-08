@@ -1,8 +1,10 @@
-import React, { useEffect, useState, createRef } from 'react'
-import classNames from 'classnames'
-import { rgbToHex } from '@coreui/utils'
-import DocsLink from '../../../reusable/DocsLink'
-import Modal from '../../../components/common/Modal'
+import React, { useEffect, useState, createRef } from "react";
+import classNames from "classnames";
+import { rgbToHex } from "@coreui/utils";
+import DocsLink from "../../../reusable/DocsLink";
+import Modal from "../../../components/common/Modal";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   CRow,
   CCol,

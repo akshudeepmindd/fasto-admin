@@ -27,7 +27,8 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <React.Suspense fallback={loading}>
-            <Sidebar />
+            
+            {/* <Sidebar /> */}
             <Switch>
               <Route
                 path="/"
@@ -63,6 +64,11 @@ function App() {
                 name="Home"
                 render={(props) => <TheLayout {...props} />}
               />
+              {/* <Route
+                path="/login"
+                name="Login"
+                render={(props) => <TheLayout {...props} />}
+              /> */}
             </Switch>
           </React.Suspense>
         </BrowserRouter>

@@ -169,6 +169,7 @@ const City = () => {
                 </CFormText>
               </CFormGroup>
               <div style={{ textAlign: 'center' }}>
+                ''
                 <CButton color='primary' onClick={handleSubmit}>
                   Create City
                 </CButton>

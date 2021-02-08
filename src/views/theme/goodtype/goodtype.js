@@ -15,8 +15,38 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  creategoodtype,getAllgoodtypes
+} from "../../../redux/actions/goodtypeactions";
 const GoodType = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [category_name, setcategory_name] = useState("");
+  const [category_image, setcategory_image] = useState("");
+
+  const [message, setMessage] = useState("");
+  const [toast, setToast] = useState(false);
+  const dispatch = useDispatch();
+  const { allgoodtypes } = useSelector((state) => state.city);
+  useEffect(() => {
+    async function getgoodtypes() {
+      dispatch(getAllgoodtypes());
+    }
+    getgoodtypes();
+  }, []);
+  const handleSubmit = async () => {
+    let params = {
+      category_name,
+      category_image,
+    };
+    const res = await dispatch(creategoodtype(params));
+    if (res.is_success == true) {
+      setOpenModal(false);
+    }
+    setMessage(res.message);
+    setToast(!toast);
+  };
 
   return (
     <>
@@ -29,32 +59,28 @@ const GoodType = () => {
       <table className="table w-100">
         <thead>
           <tr>
-            <th>Category Name  </th>
-            <th>Category Image   </th>
-            </tr>
+            <th>Category Name </th>
+            <th>Category Image </th>
+          </tr>
         </thead>
         <tbody>
           <tr>
             <td className="text-muted">Timber</td>
             <td className="font-weight-bold">img</td>
-          
           </tr>
           <tr>
-            <td className="text-muted">Plywood  </td>
+            <td className="text-muted">Plywood </td>
             <td className="font-weight-bold">img</td>
-          
           </tr>
           <tr>
             <td className="text-muted">Laminate </td>
             <td className="font-weight-bold">img</td>
-          
           </tr>
         </tbody>
       </table>
       <Modal open={openModal} close={() => setOpenModal(!openModal)}>
         <>
-          <h3>Good Type
-</h3>
+          <h3>Good Type</h3>
           <CRow>
             <CCol md="12">
               <CFormGroup>
@@ -81,7 +107,7 @@ const GoodType = () => {
                   Please enter your State Name
                 </CFormText>
               </CFormGroup>
-             
+
               <div style={{ textAlign: "center" }}>
                 <CButton color="primary" onClick>
                   Create City

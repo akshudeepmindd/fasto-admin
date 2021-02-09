@@ -120,6 +120,7 @@ const Driver = () => {
                       type='text'
                       id='state_name'
                       name='state_name'
+                      value={firstName}
                       placeholder='Enter State Name..'
                       onChange={(e) => setfirstName(e.target.value)}
                     />
@@ -134,6 +135,7 @@ const Driver = () => {
                       id='state_name'
                       name='state_name'
                       placeholder='Enter State Name..'
+                      value={lastName}
                       onChange={(e) => setlastName(e.target.value)}
                     />
                     <CFormText className='help-block'>
@@ -150,6 +152,7 @@ const Driver = () => {
                       type='text'
                       id='state_name'
                       name='state_name'
+                      value={dp}
                       placeholder='Enter State Name..'
                       onChange={(e) => setDp(e.target.value)}
                     />
@@ -163,6 +166,7 @@ const Driver = () => {
                       type='text'
                       id='state_name'
                       name='state_name'
+                      value={Mobile}
                       placeholder='Enter State Name..'
                       onChange={(e) => setMobile(e.target.value)}
                     />
@@ -178,6 +182,7 @@ const Driver = () => {
                       type='text'
                       id='state_name'
                       name='state_name'
+                      value={email}
                       placeholder='Enter State Name..'
                       onChange={(e) => setemail(e.target.value)}
                     />
@@ -191,6 +196,7 @@ const Driver = () => {
                       type='text'
                       id='state_name'
                       name='state_name'
+                      value={state}
                       placeholder='Enter State Name..'
                       onChange={(e) => setState(e.target.value)}
                     />
@@ -206,6 +212,7 @@ const Driver = () => {
                   type='text'
                   id='state_name'
                   name='state_name'
+                  value={address}
                   placeholder='Enter State Name..'
                   onChange={(e) => setaddress(e.target.value)}
                 />
@@ -220,6 +227,7 @@ const Driver = () => {
                       id='state_name'
                       name='state_name'
                       placeholder='Enter State Name..'
+                      value={pincode}
                       onChange={(e) => setpincode(e.target.value)}
                     />
                     <CFormText className='help-block'>
@@ -233,6 +241,7 @@ const Driver = () => {
                       id='state_name'
                       name='state_name'
                       placeholder='Enter State Name..'
+                      value={walletMoney}
                       onChange={(e) => setwalletMoney(e.target.value)}
                     />
                     <CFormText className='help-block'>

@@ -32,6 +32,6 @@ export const deleteAdmin = (params) => async (dispatch) => {
   const response = await adminsApis.deleteadmin(params);
   dispatch({
     type: adminActionType.DELETE_ADMIN,
-    payload: response?.data?.data,
+    payload: params,
   });
 };

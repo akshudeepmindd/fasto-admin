@@ -49,7 +49,7 @@ const _nav = [
   {
     _tag: "CSidebarNavItem",
     name: "Admin",
-    to: "/theme/typography",
+    to: "/theme/admin",
     icon: "cil-pencil",
   },
   {
@@ -180,7 +180,7 @@ const _nav = [
       },
     ],
   },
- 
+
   {
     _tag: "CSidebarNavDropdown",
     name: "Push Notifications",
@@ -191,7 +191,6 @@ const _nav = [
         _tag: "CSidebarNavItem",
         name: "Send Notifications",
         to: "/icons/coreui-icons",
-       
       },
       {
         _tag: "CSidebarNavItem",
@@ -216,7 +215,6 @@ const _nav = [
         name: "Ride Reports",
         to: "/notifications/alerts",
       },
-     
     ],
   },
   {

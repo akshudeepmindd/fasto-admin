@@ -1,5 +1,5 @@
 import * as goodtypeApis from "../../services/goodtype";
-import * as goodtypeActionTypes from "../actionsType/goodtypeActionType";
+import * as goodtypeActionTypes from "../actionsType/categoryActionType";
 
 export const creategoodtype = (params) => async (dispatch) => {
   const resp = await goodtypeApis.newgoodtype(params);
@@ -10,8 +10,8 @@ export const creategoodtype = (params) => async (dispatch) => {
   return resp.data;
 };
 
-export const updategoodtype = (params) => async (dispatch) => {
-  const resp = await goodtypeApis.updategoodtype(params);
+export const updategoodtype = (_id, params) => async (dispatch) => {
+  const resp = await goodtypeApis.updategoodtype(_id, params);
   dispatch({
     type: goodtypeActionTypes.UPDATE_GOODTYPE,
     payload: resp.data,
@@ -23,7 +23,7 @@ export const deletegoodtype = (params) => async (dispatch) => {
   const resp = await goodtypeApis.deletegoodtype(params);
   dispatch({
     type: goodtypeActionTypes.DELETE_GOODTYPE,
-    payload: resp.data,
+    payload: params,
   });
   return resp.data;
 };

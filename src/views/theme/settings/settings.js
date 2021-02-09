@@ -21,29 +21,30 @@ import {
   createSetting,
   getAllSettings,
 } from "../../../redux/actions/settingactions";
-const dispatch = useDispatch();
-const handleSubmit = async () => {
-  let params = {
-    company_name,
-    gst_no,
-    registered_name,
-    city,
-    state,
-    mobile,
-    company_logo,
-    panic_no
-  };
-  const res = await dispatch(createSetting(params));
-  if (res.is_success == true) {
-    setOpenModal(false);
-  }
-  setMessage(res.message);
-  setToast(!toast);
 
-  console.log(params, "params");
-};
 const Settings = () => {
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
+  const handleSubmit = async () => {
+    let params = {
+      // company_name,
+      // gst_no,
+      // registered_name,
+      // city,
+      // state,
+      // mobile,
+      // company_logo,
+      // panic_no,
+    };
+    const res = await dispatch(createSetting(params));
+    if (res.is_success == true) {
+      setOpenModal(false);
+    }
+    // setMessage(res.message);
+    // setToast(!toast);
+
+    console.log(params, "params");
+  };
   return (
     <>
       <div className="d-flex justify-content-between">

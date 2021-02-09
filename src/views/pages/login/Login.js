@@ -16,11 +16,9 @@ import {
   CCardGroup,
   CContainer,
   CForm,
-  CInput,
   CInputGroup,
   CInputGroupPrepend,
   CInputGroupText,
-  CRow,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { useDispatch, useSelector } from "react-redux";

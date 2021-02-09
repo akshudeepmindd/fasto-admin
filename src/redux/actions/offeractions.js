@@ -10,8 +10,8 @@ export const createOffer = (params) => async (dispatch) => {
   return resp.data;
 };
 
-export const updateOffer = (params) => async (dispatch) => {
-  const resp = await offerApis.updateOffer(params);
+export const updateOffer = (_id, params) => async (dispatch) => {
+  const resp = await offerApis.updateOffer(_id, params);
   dispatch({
     type: offerActionTypes.UPDATE_OFFER,
     payload: resp.data,
@@ -23,7 +23,7 @@ export const deleteOffer = (params) => async (dispatch) => {
   const resp = await offerApis.deleteOffer(params);
   dispatch({
     type: offerActionTypes.DELETE_OFFER,
-    payload: resp.data,
+    payload: params,
   });
   return resp.data;
 };

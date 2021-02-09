@@ -5,6 +5,7 @@ const Toaster = React.lazy(() =>
 );
 const Tables = React.lazy(() => import("./views/base/tables/Tables"));
 const offers = React.lazy(() => import("./views/theme/offers/offers"));
+const admin = React.lazy(() => import("./views/theme/admin/Admin"));
 const refferals = React.lazy(() => import("./views/theme/refferals/refferals"));
 const goodtype = React.lazy(() => import("./views/theme/goodtype/goodtype"));
 const drivers = React.lazy(() => import("./views/theme/drivers/drivers"));
@@ -76,6 +77,7 @@ const routes = [
   { path: "/theme/goodtype", name: "goodtype", component: goodtype },
   { path: "/theme/drivers", name: "drivers", component: drivers },
   { path: "/theme/settings", name: "settings", component: settings },
+  { path: "/theme/admin", name: "Admin", component: admin },
 
   { path: "/base", name: "Base", component: Cards, exact: true },
   { path: "/base/breadcrumbs", name: "Breadcrumbs", component: Breadcrumbs },

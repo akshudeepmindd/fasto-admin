@@ -1,7 +1,7 @@
 import axios from "axios";
 export const client = axios.create({
   //   baseURL: "https://tmaker-backend.herokuapp.com/api",
-  baseURL: "http://localhost:4487/",
+  baseURL: "https://fasto-backend.herokuapp.com/",
 });
 
 client.interceptors.response.use(

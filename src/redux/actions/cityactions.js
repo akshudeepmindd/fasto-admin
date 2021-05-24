@@ -20,7 +20,9 @@ export const updateCity = (params) => async (dispatch) => {
 };
 
 export const deleteCity = (params) => async (dispatch) => {
+  
   const resp = await cityApis.deleteCity(params);
+  console.log(resp,"delrete");
   dispatch({
     type: cityActionTypes.DELETE_CITY,
     payload: resp.data,
@@ -30,6 +32,7 @@ export const deleteCity = (params) => async (dispatch) => {
 
 export const getAllCities = () => async (dispatch) => {
   const resp = await cityApis.getCities();
+  console.log(resp,"get");
   dispatch({
     type: cityActionTypes.ALL_CITIES,
     payload: resp?.data?.data,

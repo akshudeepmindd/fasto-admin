@@ -44,7 +44,7 @@ export default () => {
               </CFormText>
             </CFormGroup>
             <CButton color="primary" onClick={handleSubmit}>
-                  Create City
+                  SignIN
                 </CButton>
           </CForm>
         </CCol>

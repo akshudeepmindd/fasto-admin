@@ -13,12 +13,12 @@ import {
   CToast,
 } from '@coreui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createCity, getAllCities } from '../../../redux/actions/cityactions'
+import { createCity, getAllCities ,updateCity,deleteCity} from '../../../redux/actions/cityactions'
 const City = () => {
   const [flage, setFlage] = useState(false)
   const [openModal, setOpenModal] = useState(false)
   const [city_name, setcity_name] = useState('')
-  const [edit, setEdit] = useState(false)
+  const [Edit, setEdit] = useState(false)
   const [_id, set_id] = useState('')
   const [state_name, setState_name] = useState('')
   const [country, setcountry] = useState('')
@@ -32,7 +32,29 @@ const City = () => {
       dispatch(getAllCities())
     }
     getCities()
-  }, [flage])
+  }, [flage]);
+  console.log(allcities,"All");
+
+  const updatehandleSubmit=async()=>{
+    let params = {
+      _id,
+      city_name,
+      state_name,
+      country,
+      city_charges,
+    }
+    console.log(params,"update");
+    const res = await dispatch(updateCity(params))
+    if (res.is_success == true) {
+      setOpenModal(false)
+      setFlage(!flage)
+    }
+    setMessage(res.message)
+    setToast(!toast)
+
+  }
+  
+  
   const handleSubmit = async () => {
     let params = {
       city_name,
@@ -40,6 +62,7 @@ const City = () => {
       country,
       city_charges,
     }
+    console.log(params);
     const res = await dispatch(createCity(params))
     if (res.is_success == true) {
       setOpenModal(false)
@@ -70,7 +93,9 @@ const City = () => {
         <tbody>
           {allcities &&
             allcities.map((city) => (
+            
               <tr>
+                
                 <td className='text-muted'>{city.city_name}</td>
                 <td className='font-weight-bold'>{city.state_name}</td>
                 <td className=''>{city.country}</td>
@@ -83,11 +108,7 @@ const City = () => {
                       setTimeout(() => {
                         setEdit(true)
                         set_id(city._id)
-                        setcity_name(city.vehical_name)
-                        setState_name(city.vehical_capacity)
-                        setcountry(city.about_vehical)
-                        setcity_charges(city.vehical_KM)
-                        setOpenModal(!openModal)
+                        setEdit(!Edit)
                       }, 1000)
                     }
                   ></i>
@@ -96,7 +117,7 @@ const City = () => {
                   <i
                     class='fas fa-trash'
                     style={{ color: 'red' }}
-                    // onClick={() => dispatch(deleteVehicle(item._id))}
+                     onClick={() => dispatch(deleteCity(city._id))}
                   ></i>
                 </td>
               </tr>
@@ -178,6 +199,81 @@ const City = () => {
           </CRow>
         </>
       </Modal>
+
+      
+      {/* Edit City */}
+
+      <Modal open={Edit} close={() => setEdit(!Edit)}>
+        <>
+          <h3>Edit City</h3>
+          <CRow>
+            <CCol md='12'>
+              <CFormGroup>
+                <CLabel htmlFor='city_name'>City</CLabel>
+                <CInput
+                  type='text'
+                  id='city_name'
+                  name='city_name'
+                  value={city_name}
+                  placeholder='Enter CityName..'
+                  onChange={(e) => setcity_name(e.target.value)}
+                />
+                <CFormText className='help-block'>
+                  Please enter your City
+                </CFormText>
+              </CFormGroup>
+              <CFormGroup>
+                <CLabel htmlFor='state_name'>State Name</CLabel>
+                <CInput
+                  type='text'
+                  id='state_name'
+                  name='state_name'
+                  value={state_name}
+                  placeholder='Enter State Name..'
+                  onChange={(e) => setState_name(e.target.value)}
+                />
+                <CFormText className='help-block'>
+                  Please enter your State Name
+                </CFormText>
+              </CFormGroup>
+              <CFormGroup>
+                <CLabel htmlFor='country'>Country</CLabel>
+                <CInput
+                  type='text'
+                  id='country'
+                  name='country'
+                  value={country}
+                  placeholder='Enter Country..'
+                  onChange={(e) => setcountry(e.target.value)}
+                />
+                <CFormText className='help-block'>
+                  Please enter your Country
+                </CFormText>
+              </CFormGroup>
+              <CFormGroup>
+                <CLabel htmlFor='city_charges'>City Charges</CLabel>
+                <CInput
+                  type='text'
+                  id='city_charges'
+                  name='city_charges'
+                  placeholder='Enter City Charges..'
+                  onChange={(e) => setcity_charges(e.target.value)}
+                />
+                <CFormText className='help-block'>
+                  Please enter your City Charges
+                </CFormText>
+              </CFormGroup>
+              <div style={{ textAlign: 'center' }}>
+                ''
+                <CButton color='primary' onClick={updatehandleSubmit}>
+                  Update City
+                </CButton>
+              </div>
+            </CCol>
+          </CRow>
+        </>
+      </Modal>
+      
     </>
   )
 }

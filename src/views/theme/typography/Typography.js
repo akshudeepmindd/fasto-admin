@@ -50,7 +50,7 @@ const Vehicle = () => {
     }
     getVehicals();
   }, []);
-  console.log(vehicle_Name, "nMamamama");
+  console.log(vehicalslist, "nMamamama");
   const handleSubmit = async () => {
     let formData = new FormData();
     // formData.append("vehical_image", {

@@ -37,12 +37,12 @@ const Login = () => {
       email,
       password,
     };
-    const data = dispatch(loginAdmin(params));
-    if (data.responseCode === 200) {
-      localStorage.setItem("token", data.token);
+    const res = await dispatch(loginAdmin(params));
+    console.log(res,"From Login");
+   
+    if (res.responseCode === 200) {
+      localStorage.setItem("token", res.token);
       history.push("/dashboard");
-    } else {
-      alert(data.message);
     }
   };
 

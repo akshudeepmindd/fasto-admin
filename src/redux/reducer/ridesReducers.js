@@ -17,6 +17,16 @@ export default (state = {}, action) => {
         ...state,
         userride: action.payload,
       };
+      case ridesActionType.CREATE_RIDES:
+        return{
+          ...state,
+          cride:action.payload,
+        }
+        case ridesActionType.UPDATE_DRIVER:
+          return{
+            ...state,
+            updatedriver:action.payload,
+          }
     default:
       return state;
   }

@@ -11,6 +11,7 @@ export const adminsList = () => async (dispatch) => {
 
 export const createAdmin = (params) => async (dispatch) => {
   const response = await adminsApis.createadmin(params);
+  console.log(params);
   dispatch({
     type: adminActionType.CREATE_ADMIN,
     payload: response?.data?.data,

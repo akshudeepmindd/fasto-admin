@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
 import Modal from "../../../components/common/Modal";
+import { rideList ,createRide} from "../../../redux/actions/rideAction";
+import { useDispatch, useSelector } from "react-redux";
 import {
   CRow,
   CCol,
@@ -15,9 +17,17 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
-const Ride = () => {
-  const [openModal, setOpenModal] = useState(false);
 
+const Ride = () => {
+  const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
+  const { ridelist } = useSelector((state) => state.rides);
+  useEffect(() => {
+    async function getRides() {
+      dispatch(rideList());
+    }
+    getRides();
+  }, []);
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -48,62 +58,29 @@ const Ride = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
-          <tr>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-            <td className="">Asgdghdh</td>
-          </tr>
+        {ridelist && ridelist.map((item)=>(<><tr>
+            
+            <td>{item._id}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{item.pickupName}</td>
+            <td></td>
+            <td></td>
+            <td>{item.paymentType}</td>
+            <td>{}</td>
+            <td>{item.status} </td>
+            <td>{item.otp}</td>
+
+          </tr></>))}
+          
+
         </tbody>
       </table>
       <Modal open={openModal} close={() => setOpenModal(!openModal)}>
         <>
-          <h3>Add City</h3>
+          <h3>Add Driver rides </h3>
           <CRow>
             <CCol md="12">
               <CFormGroup>

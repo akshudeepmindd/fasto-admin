@@ -24,6 +24,7 @@ const Page500 = React.lazy(() => import("./views/pages/page500/Page500"));
 function App() {
   return (
     <div className="App">
+      
       <Provider store={store}>
         <BrowserRouter>
           <React.Suspense fallback={loading}>

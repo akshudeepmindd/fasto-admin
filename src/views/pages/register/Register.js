@@ -38,8 +38,9 @@ const Register = () => {
       role,
     };
     const data = dispatch(createAdmin(params));
+   
     if (data.responseCode === 200) {
-      alert(data.message);
+     alert(data.message);
       history.push("/dashboard");
     } else {
       alert(data.message);

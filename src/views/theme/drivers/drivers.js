@@ -47,8 +47,11 @@ const Driver = () => {
     }
     getDrivers()
   }, [])
+  console.log(driverslist);
 
-  const onHandleSubmit = () => {}
+  const onHandleSubmit = () => {
+    console.log("handle");
+  }
 
   return (
     <>

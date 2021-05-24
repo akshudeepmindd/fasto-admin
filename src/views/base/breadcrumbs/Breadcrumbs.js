@@ -29,7 +29,7 @@ const Passenger = () => {
     }
     getUsers();
   }, []);
-  console.log(userslist);
+  console.log(userslist,"user");
   return (
     <>
       <div className="d-flex justify-content-between">

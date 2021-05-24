@@ -3,6 +3,7 @@ import * as vehicalsActionTypes from '../actionsType/vehicalActionType'
 
 export const vehicalList = () => async (dispatch) => {
   const response = await vehicalsApis.vehicallist()
+  console.log(response,"vaction");
   dispatch({
     type: vehicalsActionTypes.GET_VEHICALS,
     payload: response?.data?.data,

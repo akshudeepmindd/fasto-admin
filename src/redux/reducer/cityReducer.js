@@ -12,6 +12,11 @@ export default (state = {}, action) => {
         ...state,
         allcities: action.payload,
       };
+    case cityActionType.ALL_FARE:
+      return {
+        ...state,
+        allfare: action.payload,
+      };
     default:
       return state;
   }

@@ -17,6 +17,11 @@ export default (state = {}, action) => {
         ...state,
         adminList: action.payload,
       };
+      case adminActionType.UPDATE_ADMIN:
+        return {
+          ...state,
+          update:action.payload,
+        };
     case adminActionType.DELETE_ADMIN:
       const filterproduct = state.adminList.filter(
         (item) => item._id !== action.payload

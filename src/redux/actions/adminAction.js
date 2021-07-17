@@ -36,3 +36,12 @@ export const deleteAdmin = (params) => async (dispatch) => {
     payload: params,
   });
 };
+export const updateAdmin=(params)=>async(dispatch)=>{
+  const response=await adminsApis.updateAdmin(params);
+  console.log(response,"action");
+  dispatch({
+    type:adminActionType.UPDATE_ADMIN,
+    payload:params,
+  });
+  
+}

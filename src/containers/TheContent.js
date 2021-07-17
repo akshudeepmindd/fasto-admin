@@ -16,7 +16,13 @@ const loading = (
 )
 
 const TheContent = () => {
+  
+  const token=localStorage.getItem("token");
+  console.log(token);
+  if(token)
   return (
+    
+    
     <main className="c-main">
       <CContainer fluid>
         <Suspense fallback={loading}>
@@ -35,11 +41,30 @@ const TheContent = () => {
                   )} />
               )
             })}
+            
             <Redirect from="/" to="/dashboard" />
           </Switch>
         </Suspense>
       </CContainer>
     </main>
+  )
+  else
+  return(
+    <main className="c-main">
+    <CContainer fluid>
+      <Suspense fallback={loading}>
+        <Switch>
+          
+          
+          <Redirect to="/login" />
+        </Switch>
+      </Suspense>
+    </CContainer>
+  </main>
+
+
+
+
   )
 }
 

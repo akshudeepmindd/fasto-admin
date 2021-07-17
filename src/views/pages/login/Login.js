@@ -26,6 +26,7 @@ import { loginAdmin } from "../../../redux/actions/adminAction";
 import { useHistory, useLocation } from "react-router";
 
 const Login = () => {
+  localStorage.removeItem("token");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ const Login = () => {
     if (res.responseCode === 200) {
       localStorage.setItem("token", res.token);
       history.push("/dashboard");
+    }
+    else{
+      history.push("/login");
     }
   };
 

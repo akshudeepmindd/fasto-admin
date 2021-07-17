@@ -7,7 +7,7 @@ import ridesReducers from "./ridesReducers";
 import adminReducer from "./adminReducer";
 import categoryReducer from "./categoryReducer";
 import offerReducer from "./offerReducer";
-
+import ticketReducer from "./ticketReducer"
 export default combineReducers({
   city: cityReducer,
   admin: adminReducer,
@@ -17,4 +17,5 @@ export default combineReducers({
   vehicals: vehicalsReducers,
   drivers: driversReducer,
   rides: ridesReducers,
+  ticket:ticketReducer,
 });

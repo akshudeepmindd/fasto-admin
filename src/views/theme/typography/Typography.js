@@ -29,6 +29,7 @@ const Vehicle = () => {
   const { vehicalslist, singleVehicle } = useSelector(
     (state) => state.vehicals
   );
+  const [flage, setFlage] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState({});
   const [vehicle_Name, setvehicle_Name] = useState("");
@@ -49,7 +50,7 @@ const Vehicle = () => {
       }
     }
     getVehicals();
-  }, []);
+  }, [flage]);
   console.log(vehicalslist, "nMamamama");
   const handleSubmit = async () => {
     let formData = new FormData();
@@ -71,8 +72,9 @@ const Vehicle = () => {
     //   km,
     // };
     const res = await dispatch(addVehical(formData));
-    if (res.is_success == true) {
+    if (res.isSuccess == true) {
       setOpenModal(false);
+      setFlage(!flage)
     }
     setMessage(res.message);
     setToast(!toast);

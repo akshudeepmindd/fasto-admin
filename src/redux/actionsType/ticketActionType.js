@@ -1,0 +1,1 @@
+export const GET_ALLTICKET="GET_ALLTICKET";

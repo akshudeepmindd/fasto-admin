@@ -24,6 +24,13 @@ const _nav = [
   },
   {
     _tag: "CSidebarNavItem",
+    name: "base_fare",
+    to: "/theme/basefare",
+    icon: "cil-drop",
+  },
+
+  {
+    _tag: "CSidebarNavItem",
     name: "Vehicles Type",
     to: "/theme/typography",
     icon: "cil-pencil",

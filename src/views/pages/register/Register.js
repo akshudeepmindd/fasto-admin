@@ -37,8 +37,8 @@ const Register = () => {
       mobile,
       role,
     };
-    const data = dispatch(createAdmin(params));
-   
+    const data = await dispatch(createAdmin(params));
+   console.log(data);
     if (data.responseCode === 200) {
      alert(data.message);
       history.push("/dashboard");

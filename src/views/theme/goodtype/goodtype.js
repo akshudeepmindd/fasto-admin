@@ -45,7 +45,7 @@ const GoodType = () => {
       category_image,
     };
     const res = await dispatch(creategoodtype(params));
-    if (res.is_success == true) {
+    if (res.isSuccess == true) {
       setOpenModal(false);
       dispatch(getAllgoodtypes());
     }

@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { rgbToHex } from "@coreui/utils";
 import DocsLink from "../../../reusable/DocsLink";
 import Modal from "../../../components/common/Modal";
+import {ticketList} from "../../../redux/actions/ticketAction";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   CRow,
   CCol,
@@ -15,9 +17,19 @@ import {
   CToastBody,
   CToast,
 } from "@coreui/react";
+import { getAllticket } from "../../../services/ticket";
 const Support = () => {
   const [openModal, setOpenModal] = useState(false);
-
+  const { allticket } = useSelector((state) => state.ticket);
+  const [flag,setflag]=useState(false);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    async function getticket() {
+      dispatch(ticketList())
+    }
+    getticket()
+  },[flag]);
+  console.log(allticket,"rohit");
   return (
     <>
       <div className="d-flex justify-content-between">

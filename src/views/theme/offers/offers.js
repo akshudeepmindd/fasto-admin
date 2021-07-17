@@ -51,7 +51,7 @@ const Offer = () => {
       offer_valid_from,
     };
     const res = await dispatch(createOffer(params));
-    if (res.is_success == true) {
+    if (res.isSuccess == true) {
       setOpenModal(false);
       await dispatch(getAllOffer());
     }

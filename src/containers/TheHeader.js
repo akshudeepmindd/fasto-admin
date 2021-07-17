@@ -89,6 +89,16 @@ const TheHeader = () => {
             <CIcon name="cil-graph" alt="Dashboard" />
             &nbsp;Dashboard
           </CLink>
+
+          <CLink
+            className="c-subheader-nav-link"
+            aria-current="page"
+            to="/login"
+          >
+            <CIcon name="cil-graph" alt="Dashboard" />
+            &nbsp;Logout
+          </CLink>
+
           <CLink className="c-subheader-nav-link" href="#">
             <CIcon name="cil-settings" alt="Settings" />
             &nbsp;Settings

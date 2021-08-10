@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios'
 export const client = axios.create({
   //   baseURL: "https://tmaker-backend.herokuapp.com/api",
-  baseURL: "http://localhost:5003/",
-});
+  baseURL: 'https://fasto-backend.herokuapp.com/'
+})
 
 client.interceptors.response.use(
-  (response) => response,
-  (error) => console.log(error)
+  response => response,
+  error => console.log(error)
   // const { response } = error;
   // console.log(error, "<<< error in interceptors");
   // if (response.responseCode === 401) {
@@ -19,4 +19,4 @@ client.interceptors.response.use(
   //   return response;
   // }
   // return Promise.reject(error.response);
-);
+)
